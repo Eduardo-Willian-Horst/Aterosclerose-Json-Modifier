@@ -24,7 +24,7 @@ public class ShowQuestion : MonoBehaviour
     [SerializeField] private HardQuestionsReader HardReader;
     [SerializeField] private MediumQuestionsReader MediumReader;
     [SerializeField] private TextMeshProUGUI description;
-    [SerializeField] private UnityEngine.UI.Button removeQuestionButton;
+    [SerializeField] private UnityEngine.UI.Button removeQuestionButton, editQuestionButton;
 
     public List<question> lista;
 
@@ -125,6 +125,7 @@ public class ShowQuestion : MonoBehaviour
         {
             
             removeQuestionButton.interactable = false;
+            editQuestionButton.interactable = false;
             return "A lista de questões se encontra vazia!";
         }
         else {
@@ -132,5 +133,11 @@ public class ShowQuestion : MonoBehaviour
             return $"ID: {lista[questao].id}\nQuestão: {lista[questao].pergunta}\nResposta: {lista[questao].respostaCorreta}";
         }
     }
-
+    public question getActualQuestion(){
+        return lista[questao];
+    }
+    public void updateQuestion(question updated){
+        lista[questao]=updated;
+        JustReloadPainel();
+    }
 }

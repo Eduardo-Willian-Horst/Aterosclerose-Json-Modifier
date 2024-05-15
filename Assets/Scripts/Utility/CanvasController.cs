@@ -6,13 +6,14 @@ using UnityEngine.UI;
 
 public class CanvasController : MonoBehaviour
 {
-    [SerializeField] private GameObject screenLogin, screenCreateUser, selectAction, openFile, addQuestion,removeQuestion;
+    [SerializeField] private GameObject screenLogin, screenCreateUser, selectAction, openFile, addQuestion,removeQuestion, editQuestion;
     [SerializeField] private ShowQuestion showQuestion;
+    [SerializeField] private editQuestion edit_Question;
     [SerializeField] private SelectLoader selectLoader;
     [SerializeField] private Button okButton;
     [SerializeField] private TextMeshProUGUI pathText;
     private string whoYouMake = "addQuestion";
-
+    private ShowQuestion.question questForEdit;
     public void OpenScreenLogin(){
         DisableAllScreens();
         screenLogin.SetActive(true);
@@ -61,8 +62,16 @@ public class CanvasController : MonoBehaviour
         DisableAllScreens();
         addQuestion.SetActive(true);
     }
+    public void onClickEdit(){
+        questForEdit = showQuestion.getActualQuestion();
+        Debug.Log(questForEdit.id);
+        DisableAllScreens();
+        editQuestion.SetActive(true);
+        edit_Question.edit(questForEdit);
+    }
 
     private void DisableAllScreens(){
+        editQuestion.SetActive(false);
         screenLogin.SetActive(false);
         screenCreateUser.SetActive(false);
         selectAction.SetActive(false);
