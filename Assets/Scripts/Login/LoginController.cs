@@ -42,7 +42,7 @@ public class LoginController : MonoBehaviour
     public void onClickLogin(){
         if(CheckLogin()){
             RemoveError();
-            CanvasController.OpenSelectAction();
+            CanvasController.selectTypeOfArchive();
         } else SendError();
     }
 }

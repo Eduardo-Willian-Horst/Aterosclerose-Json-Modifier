@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CanvasController : MonoBehaviour
 {
-    [SerializeField] private GameObject screenLogin, screenCreateUser, selectAction, openFile, addQuestion,removeQuestion, editQuestion;
+    [SerializeField] private GameObject screenLogin, screenCreateUser, selectAction, openFile, addQuestion,removeQuestion, editQuestion, selectType, clinicCases, selectClinicCase;
     [SerializeField] private ShowQuestion showQuestion;
     [SerializeField] private editQuestion edit_Question;
     [SerializeField] private SelectLoader selectLoader;
@@ -14,6 +14,11 @@ public class CanvasController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI pathText;
     private string whoYouMake = "addQuestion";
     private ShowQuestion.question questForEdit;
+    
+    void Start(){
+        OpenScreenLogin();
+    }
+
     public void OpenScreenLogin(){
         DisableAllScreens();
         screenLogin.SetActive(true);
@@ -27,6 +32,10 @@ public class CanvasController : MonoBehaviour
     public void OpenSelectAction(){
         DisableAllScreens();
         selectAction.SetActive(true);
+    }
+    public void selectTypeOfArchive(){
+        DisableAllScreens();
+        selectType.SetActive(true);
     }
 
     public void OpenOpenFile(){
@@ -64,10 +73,23 @@ public class CanvasController : MonoBehaviour
     }
     public void onClickEdit(){
         questForEdit = showQuestion.getActualQuestion();
-        Debug.Log(questForEdit.id);
+        //Debug.Log(questForEdit.id);
         DisableAllScreens();
         editQuestion.SetActive(true);
         edit_Question.edit(questForEdit);
+    }
+    public void onClickCasosClinicos(){
+        DisableAllScreens();
+        clinicCases.SetActive(true);
+    }
+    public void onClickEditCasosClinicos(){
+        DisableAllScreens();
+        selectClinicCase.SetActive(true);
+
+    }
+    public void onClickQuestoesClinicas(string path1, string path2){
+        DisableAllScreens();
+        selectClinicCase.SetActive(true);
     }
 
     private void DisableAllScreens(){
@@ -77,6 +99,9 @@ public class CanvasController : MonoBehaviour
         selectAction.SetActive(false);
         openFile.SetActive(false);
         addQuestion.SetActive(false);
+        selectType.SetActive(false);
         removeQuestion.SetActive(false);
+        clinicCases.SetActive(false);
+        selectClinicCase.SetActive(false);
     }
 }
