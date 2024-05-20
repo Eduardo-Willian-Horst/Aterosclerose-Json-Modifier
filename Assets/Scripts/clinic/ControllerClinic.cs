@@ -9,14 +9,16 @@ using TMPro;
 public class ControllerClinic : MonoBehaviour
 {
     [SerializeField] private CanvasController canvasController;
-    [SerializeField] private Button continueBtn;
-    [SerializeField] private TextMeshProUGUI advice1, advice2;
+    [SerializeField] private readCases readC;
+    private readCases.casosclinicosList casesList;
+    private readCases.questoesClinicasList questoesList;
+    [SerializeField] private Button continueBtn, rightBtn, leftBtn, deletePctBtn, editPctBtn, editQuestBtn;
+    [SerializeField] private TextMeshProUGUI advice1, advice2, pacient_name, pacient_id, pacient_anamnese;
     private bool clinic=false, quest= false;
     private string filePath1, filePath2;
 
 
     public void onClickSearchClinic(){
-        Debug.Log("eu executo");
         StartCoroutine(FindFile(1));
     }
     public void onClickSearchQuest(){
@@ -81,7 +83,64 @@ public class ControllerClinic : MonoBehaviour
             }
         }
     }
+    void sendReadError(){
+        pacient_anamnese.text="";
+        pacient_id.text="";
+        pacient_name.text="Nenhum paciente carregado!";
+        pacient_name.color = Color.red;
+        editPctBtn.interactable = false;
+        editQuestBtn.interactable = false;
+        deletePctBtn.interactable = false;
+    }
+    private int index = 0;
+    public void getterCases(){
+        casesList = readC.getCasosList();
+        questoesList = readC.getQuestoes();
+    }
+    public void controlador(){
+        if(casesList.casosclinicos.Count==0)sendReadError();
+        else{
+            pacient_name.text = "Paciente: " + casesList.casosclinicos[index].nomepaciente;
+            pacient_name.color = Color.white;
+            pacient_id.text = "Id: " + casesList.casosclinicos[index].id.ToString();
+            pacient_anamnese.text = "Anamnese: " + casesList.casosclinicos[index].anamnese;
+            if(casesList.casosclinicos[index].anamnese.Length>444)pacient_anamnese.fontSize = 28;
+            else pacient_anamnese.fontSize=36;
+        }
+    }
+    public void onClickRight(){
+        index++;
+        if(index==casesList.casosclinicos.Count)index=0;
+        controlador();
+    }
+    public void onClickLeft(){
+        index--;
+        if(index<0)index=casesList.casosclinicos.Count-1;
+        controlador();
+    }
+    public void onClickNovoPaciente(){
 
+    }
+    public void onClickEditarPaciente(){
+
+    }
+    public void onClickDeletarPaciente(){
+        deleteQuestions(casesList.casosclinicos[index].id);
+        casesList.casosclinicos.RemoveAt(index);
+        onClickLeft();
+        controlador();
+    }
+    public void onClickEditarQuestoes(){
+
+    }
+    void deleteQuestions(int identificador){
+        for (int i = 0; i < questoesList.questoesClinicas.Count; i++) {
+            if (questoesList.questoesClinicas[i].id_paciente == identificador) {
+                questoesList.questoesClinicas.RemoveAt(i);
+                i--;
+            }
+        }
+}
 
 
 }

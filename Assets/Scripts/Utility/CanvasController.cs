@@ -10,6 +10,8 @@ public class CanvasController : MonoBehaviour
     [SerializeField] private ShowQuestion showQuestion;
     [SerializeField] private editQuestion edit_Question;
     [SerializeField] private SelectLoader selectLoader;
+    [SerializeField] private readCases readC;
+    [SerializeField] private ControllerClinic controllerClinic;
     [SerializeField] private Button okButton;
     [SerializeField] private TextMeshProUGUI pathText;
     private string whoYouMake = "addQuestion";
@@ -90,6 +92,10 @@ public class CanvasController : MonoBehaviour
     public void onClickQuestoesClinicas(string path1, string path2){
         DisableAllScreens();
         selectClinicCase.SetActive(true);
+        readC.startClinic(path1);
+        readC.startCases(path2);
+        controllerClinic.getterCases();
+        controllerClinic.controlador();
     }
 
     private void DisableAllScreens(){

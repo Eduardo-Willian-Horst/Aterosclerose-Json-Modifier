@@ -1747,6 +1747,54 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &128471648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 128471649}
+  - component: {fileID: 128471650}
+  m_Layer: 0
+  m_Name: readCases
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &128471649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128471648}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 139066028}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &128471650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128471648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b73205617b4531949b860011a236868a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questoesList:
+    questoesClinicas: []
+  casosList:
+    casosclinicos: []
 --- !u!1 &139066027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1786,6 +1834,7 @@ Transform:
   - {fileID: 1859903641}
   - {fileID: 473983331}
   - {fileID: 1704355183}
+  - {fileID: 128471649}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &140772820
@@ -2057,9 +2106,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 884965159}
-        m_TargetAssemblyTypeName: CanvasController, Assembly-CSharp
-        m_MethodName: onClickEdit
+      - m_Target: {fileID: 1704355184}
+        m_TargetAssemblyTypeName: ControllerClinic, Assembly-CSharp
+        m_MethodName: onClickNovoPaciente
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5873,7 +5922,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10.9999695, y: 222.0601}
+  m_AnchoredPosition: {x: 0, y: 222.0601}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &513879196
@@ -9469,6 +9518,8 @@ MonoBehaviour:
   showQuestion: {fileID: 1666416777}
   edit_Question: {fileID: 473983332}
   selectLoader: {fileID: 1989751714}
+  readC: {fileID: 128471650}
+  controllerClinic: {fileID: 1704355184}
   okButton: {fileID: 724740528}
   pathText: {fileID: 1921036324}
 --- !u!1 &890191424
@@ -13525,8 +13576,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11, y: 282.06012}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 292.05707}
+  m_SizeDelta: {x: 800.9752, y: 54.5348}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1146138646
 MonoBehaviour:
@@ -13611,7 +13662,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 1.398737, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -15971,7 +16022,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1338987736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16895,9 +16946,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 884965159}
-        m_TargetAssemblyTypeName: CanvasController, Assembly-CSharp
-        m_MethodName: onClickEdit
+      - m_Target: {fileID: 1704355184}
+        m_TargetAssemblyTypeName: ControllerClinic, Assembly-CSharp
+        m_MethodName: onClickEditarPaciente
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17591,9 +17642,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 884965159}
-        m_TargetAssemblyTypeName: CanvasController, Assembly-CSharp
-        m_MethodName: onClickEdit
+      - m_Target: {fileID: 1704355184}
+        m_TargetAssemblyTypeName: ControllerClinic, Assembly-CSharp
+        m_MethodName: onClickDeletarPaciente
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18194,9 +18245,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1666416777}
-        m_TargetAssemblyTypeName: ShowQuestion, Assembly-CSharp
-        m_MethodName: NextQuestion
+      - m_Target: {fileID: 1704355184}
+        m_TargetAssemblyTypeName: ControllerClinic, Assembly-CSharp
+        m_MethodName: onClickRight
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20114,9 +20165,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1666416777}
-        m_TargetAssemblyTypeName: ShowQuestion, Assembly-CSharp
-        m_MethodName: PreviousQuestion
+      - m_Target: {fileID: 1704355184}
+        m_TargetAssemblyTypeName: ControllerClinic, Assembly-CSharp
+        m_MethodName: onClickLeft
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21147,9 +21198,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasController: {fileID: 884965159}
+  readC: {fileID: 128471650}
   continueBtn: {fileID: 1087270002}
+  rightBtn: {fileID: 1500846808}
+  leftBtn: {fileID: 1660560434}
+  deletePctBtn: {fileID: 1444211460}
+  editPctBtn: {fileID: 1388429771}
+  editQuestBtn: {fileID: 1710183738}
   advice1: {fileID: 828613996}
   advice2: {fileID: 1171187680}
+  pacient_name: {fileID: 1146138646}
+  pacient_id: {fileID: 513879196}
+  pacient_anamnese: {fileID: 2016012333}
 --- !u!1 &1705869983
 GameObject:
   m_ObjectHideFlags: 0
@@ -21367,9 +21427,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 884965159}
-        m_TargetAssemblyTypeName: CanvasController, Assembly-CSharp
-        m_MethodName: onClickEdit
+      - m_Target: {fileID: 1704355184}
+        m_TargetAssemblyTypeName: ControllerClinic, Assembly-CSharp
+        m_MethodName: onClickEditarQuestoes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23665,7 +23725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1952780913
 MonoBehaviour:
   m_ObjectHideFlags: 0
