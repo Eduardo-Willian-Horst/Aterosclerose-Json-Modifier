@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CanvasController : MonoBehaviour
 {
-    [SerializeField] private GameObject screenLogin, screenCreateUser, selectAction, openFile, addQuestion,removeQuestion, editQuestion, selectType, clinicCases, selectClinicCase;
+    [SerializeField] private GameObject screenLogin, screenCreateUser, selectAction, openFile, addQuestion,removeQuestion, editQuestion, selectType, clinicCases, selectClinicCase, clinicQuestionEdit;
     [SerializeField] private ShowQuestion showQuestion;
     [SerializeField] private editQuestion edit_Question;
     [SerializeField] private SelectLoader selectLoader;
@@ -25,7 +25,10 @@ public class CanvasController : MonoBehaviour
         DisableAllScreens();
         screenLogin.SetActive(true);
     }
-
+    public void backToInit(){
+        DisableAllScreens();
+        selectType.SetActive(true);
+    }
     public void OpenScreenCreateUser(){
         DisableAllScreens();
         screenCreateUser.SetActive(true);
@@ -87,9 +90,8 @@ public class CanvasController : MonoBehaviour
     public void onClickEditCasosClinicos(){
         DisableAllScreens();
         selectClinicCase.SetActive(true);
-
     }
-    public void onClickQuestoesClinicas(string path1, string path2){
+    public void onClickContinue(string path1, string path2){
         DisableAllScreens();
         selectClinicCase.SetActive(true);
         readC.startClinic(path1);
@@ -98,7 +100,7 @@ public class CanvasController : MonoBehaviour
         controllerClinic.controlador();
     }
 
-    private void DisableAllScreens(){
+    public void DisableAllScreens(){
         editQuestion.SetActive(false);
         screenLogin.SetActive(false);
         screenCreateUser.SetActive(false);
@@ -109,5 +111,6 @@ public class CanvasController : MonoBehaviour
         removeQuestion.SetActive(false);
         clinicCases.SetActive(false);
         selectClinicCase.SetActive(false);
+        clinicQuestionEdit.SetActive(false);
     }
 }
