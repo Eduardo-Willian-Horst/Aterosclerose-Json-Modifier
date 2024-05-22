@@ -165,6 +165,15 @@ public class ControllerClinic : MonoBehaviour
             initQuestionPanel();
         }
     }
+    public readCases.questoesClinicas_ getActualQuest(){
+        return questsForEdit[indexQ];
+    }
+    public int findValidId(){
+        return questoesList.questoesClinicas[questoesList.questoesClinicas.Count-1].id+1;
+    }
+    public int getIdPaciente(){
+        return questsForEdit[indexQ].id_paciente;
+    }
     int indexQ = 0;
     public void onClickRightQuestoes(){
         indexQ++;
@@ -180,6 +189,18 @@ public class ControllerClinic : MonoBehaviour
         noErrors();
         numberofQuestText.text = "Número de questões: " + questsForEdit.Count.ToString();
         questText.text = "Id: " + questsForEdit[indexQ].id.ToString() + "\nQuestão: " + questsForEdit[indexQ].pergunta + "\nResposta: " + questsForEdit[indexQ].respostacorreta;
+    }
+    public void saveEditedQuestion(readCases.questoesClinicas_ edited){
+        bool found = false;
+        for(int i=0; i<questoesList.questoesClinicas.Count; i++){
+            if(edited.id == questoesList.questoesClinicas[i].id){
+                questoesList.questoesClinicas[i] = edited;
+                found = true;
+            }
+        }
+        if(!found){
+            questoesList.questoesClinicas.Add(edited);
+        }
     }
     void deleteQuestionsMassive(int identificador){
         for (int i = 0; i < questoesList.questoesClinicas.Count; i++) {
@@ -205,7 +226,7 @@ public class ControllerClinic : MonoBehaviour
         if(verifyNumberOfQuests())onClickLeftQuestoes();
         else dispareErrorQuest();
     }
-    public void editQuest(){
-        ShowQuestion.question q;
-    }
+    //public void editQuest(){
+    //    ShowQuestion.question q;
+    //}
 }

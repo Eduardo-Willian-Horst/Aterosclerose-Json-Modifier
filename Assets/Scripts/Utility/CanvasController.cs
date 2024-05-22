@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CanvasController : MonoBehaviour
 {
-    [SerializeField] private GameObject screenLogin, screenCreateUser, selectAction, openFile, addQuestion,removeQuestion, editQuestion, selectType, clinicCases, selectClinicCase, clinicQuestionEdit;
+    [SerializeField] private GameObject screenLogin, screenCreateUser, selectAction, openFile, addQuestion,removeQuestion, editQuestion, selectType, clinicCases, selectClinicCase, clinicQuestionEdit, editQuestionSpecific;
     [SerializeField] private ShowQuestion showQuestion;
     [SerializeField] private editQuestion edit_Question;
     [SerializeField] private SelectLoader selectLoader;
@@ -112,5 +112,6 @@ public class CanvasController : MonoBehaviour
         clinicCases.SetActive(false);
         selectClinicCase.SetActive(false);
         clinicQuestionEdit.SetActive(false);
+        editQuestionSpecific.SetActive(false);
     }
 }

@@ -14,6 +14,13 @@ public class readCases : MonoBehaviour {
         public string pergunta;
         public List<string> opcoes;
         public string respostacorreta;
+        public questoesClinicas_(){
+            id = 0;
+            id_paciente = 0;
+            pergunta = string.Empty;
+            opcoes = new List<string>{ string.Empty, string.Empty, string.Empty, string.Empty};
+            respostacorreta = string.Empty;
+        }
     }
 
     [System.Serializable]

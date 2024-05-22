@@ -12,6 +12,7 @@ public class LoginController : MonoBehaviour
     [SerializeField] private TMP_InputField nameInputField, passwordInputField;
     [SerializeField] private CanvasController CanvasController;
     [SerializeField] private TextMeshProUGUI ErrorMsg;
+    [SerializeField] private LogController Log;
 
     void Awake(){
         RemoveError();
@@ -43,6 +44,8 @@ public class LoginController : MonoBehaviour
         if(CheckLogin()){
             RemoveError();
             CanvasController.selectTypeOfArchive();
+            PlayerPrefs.SetString("userInUse", nameInputField.text);
+            Log.NewLog("logou");
         } else SendError();
     }
 }
