@@ -11,6 +11,7 @@ public class ControllerClinic : MonoBehaviour
     [SerializeField] private GameObject editQuestoes;
     [SerializeField] private CanvasController canvasController;
     [SerializeField] private readCases readC;
+    [SerializeField] private editPacient editP;
     private readCases.casosclinicosList casesList;
     private readCases.questoesClinicasList questoesList;
     private List<readCases.questoesClinicas_> questsForEdit;
@@ -124,7 +125,8 @@ public class ControllerClinic : MonoBehaviour
 
     }
     public void onClickEditarPaciente(){
-
+        canvasController.DisableAllScreens();
+        editP.initer(casesList.casosclinicos[index]);
 
     }
     public void onClickDeletarPaciente(){
