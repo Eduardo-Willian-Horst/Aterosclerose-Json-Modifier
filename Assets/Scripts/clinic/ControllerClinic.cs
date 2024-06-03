@@ -122,13 +122,26 @@ public class ControllerClinic : MonoBehaviour
         controlador();
     }
     public void onClickNovoPaciente(){
-
+        canvasController.DisableAllScreens();
+        casesList.casosclinicos.Add(new readCases.casosclinicos_(findValidPacientId()));
+        editP.initer(casesList.casosclinicos[casesList.casosclinicos.Count-1]);
     }
     public void onClickEditarPaciente(){
         canvasController.DisableAllScreens();
         editP.initer(casesList.casosclinicos[index]);
-
     }
+    public void receiveAttCase(readCases.casosclinicos_ updated_){
+        for(int i=0; i<casesList.casosclinicos.Count; i++){
+            if(casesList.casosclinicos[i].id==updated_.id){
+                casesList.casosclinicos[i] = updated_;
+                break;
+            }
+        }
+        index = 0;
+        canvasController.onClickEditCasosClinicos();
+        controlador();
+    }
+
     public void onClickDeletarPaciente(){
         deleteQuestionsMassive(casesList.casosclinicos[index].id);
         casesList.casosclinicos.RemoveAt(index);
@@ -172,6 +185,9 @@ public class ControllerClinic : MonoBehaviour
     }
     public int findValidId(){
         return questoesList.questoesClinicas[questoesList.questoesClinicas.Count-1].id+1;
+    }
+    public int findValidPacientId(){
+        return casesList.casosclinicos[casesList.casosclinicos.Count-1].id+1;
     }
     public int getIdPaciente(){
         return questsForEdit[indexQ].id_paciente;

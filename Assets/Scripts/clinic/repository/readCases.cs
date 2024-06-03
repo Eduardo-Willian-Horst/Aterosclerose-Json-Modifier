@@ -47,6 +47,22 @@ public class readCases : MonoBehaviour {
         public string nomepaciente;
         public int numerodequestoes;
         public int exprequerida;
+        public casosclinicos_(int id_){
+            id = id_;
+            dificuldade = 1;
+            idade = -1;
+            peso = -1.0f;
+            altura = -1.0f;
+            sexo = "";
+            anamnese = "";
+            antecedentes = new List<string>();
+            condicoes = new List<string>();
+            examesfisicos = new List<string>();
+            exameslaboratoriais = new List<string>();
+            nomepaciente = "";
+            numerodequestoes = 0;
+            exprequerida = 0;
+        }
     }
 
     [System.Serializable]
