@@ -10,7 +10,7 @@ public class editPacient : MonoBehaviour
     [SerializeField] private GameObject canvasEditPaciente;
     [SerializeField] private ControllerClinic controllerClinic;
     [SerializeField] private TextMeshProUGUI sliderText, nCondsText, nAntecedentesText, nExamFisico, nExamLab;
-    [SerializeField] private TMP_InputField nameInputText, idadeInputText, pesoInputText, anamneseInputText;
+    [SerializeField] private TMP_InputField nameInputText, idadeInputText, pesoInputText, alturaInputText, anamneseInputText;
     [SerializeField] private Button alterarCondBtn, addCondBtn, alterarAnteBtn, addAnteBtn, alterarFisicBtn, addFisicBtn, alterarLabBtn, addLabBtn;
     [SerializeField] private readCases rc;
     [SerializeField] private Toggle femTogg, mascTogg;
@@ -31,6 +31,7 @@ public class editPacient : MonoBehaviour
         nameInputText.text = casoAtual.nomepaciente;
         idadeInputText.text = casoAtual.idade.ToString();
         pesoInputText.text = casoAtual.peso.ToString();
+        alturaInputText.text = casoAtual.altura.ToString();
         anamneseInputText.text = casoAtual.anamnese;
         dificultySlider.value = casoAtual.dificuldade;
         if(casoAtual.sexo=="F")femTogg.isOn = true;
@@ -59,7 +60,7 @@ public class editPacient : MonoBehaviour
             alterarLabBtn.interactable = true;
         }
     }
-    void updateTexts(){
+    public void updateTexts(){
         nCondsText.text = "nº de condições: " + casoAtual.condicoes.Count;
         nAntecedentesText.text = "nº de antecedentes: " + casoAtual.antecedentes.Count;
         nExamFisico.text = "nº de exames fisicos: " + casoAtual.examesfisicos.Count;
@@ -97,7 +98,8 @@ public class editPacient : MonoBehaviour
     public void onClickSave(){
         casoAtual.nomepaciente = nameInputText.text;
         casoAtual.idade = int.Parse(idadeInputText.text);
-        casoAtual.peso = float.Parse(idadeInputText.text);
+        casoAtual.peso = float.Parse(pesoInputText.text);
+        casoAtual.altura = float.Parse(alturaInputText.text);
         if(mascTogg.isOn)casoAtual.sexo="M";
         else casoAtual.sexo="F";
         casoAtual.anamnese = anamneseInputText.text;

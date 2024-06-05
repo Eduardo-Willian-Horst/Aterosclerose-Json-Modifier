@@ -247,4 +247,17 @@ public class ControllerClinic : MonoBehaviour
     //public void editQuest(){
     //    ShowQuestion.question q;
     //}
+    public List<string> getCondicoes(){
+        return casesList.casosclinicos[index].condicoes;
+    }
+    public List<string> getAntecedentes(){
+        return casesList.casosclinicos[index].antecedentes;
+    }
+    public List<string> getExamesFisicos(){
+        return casesList.casosclinicos[index].examesfisicos;
+    }
+    public List<string> getExamesLaboratoriais(){
+        return casesList.casosclinicos[index].exameslaboratoriais;
+    }
+
 }
