@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -99,7 +100,7 @@ public class editPacient : MonoBehaviour
         casoAtual.nomepaciente = nameInputText.text;
         casoAtual.idade = int.Parse(idadeInputText.text);
         casoAtual.peso = float.Parse(pesoInputText.text);
-        casoAtual.altura = float.Parse(alturaInputText.text);
+        casoAtual.altura = (float)Math.Round(float.Parse(alturaInputText.text),2);
         if(mascTogg.isOn)casoAtual.sexo="M";
         else casoAtual.sexo="F";
         casoAtual.anamnese = anamneseInputText.text;

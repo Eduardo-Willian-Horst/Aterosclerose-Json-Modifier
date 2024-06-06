@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using System;
 using SFB;
 using TMPro;
 
@@ -15,11 +16,19 @@ public class ControllerClinic : MonoBehaviour
     private readCases.casosclinicosList casesList;
     private readCases.questoesClinicasList questoesList;
     private List<readCases.questoesClinicas_> questsForEdit;
+    [SerializeField] private DialogBoxController dialogBox;
+    [SerializeField] private FileSelect fileSelect;
     [SerializeField] private Button continueBtn, rightBtn, leftBtn, deletePctBtn, editPctBtn, editQuestBtn, questEditBtn, questRemoveBtn, questNewBtn;
     [SerializeField] private TextMeshProUGUI advice1, advice2, pacient_name, pacient_id, pacient_anamnese, numberofQuestText, questText;
     private bool clinic=false, quest= false;
     private string filePath1, filePath2;
 
+
+    public void saveAndExportPacients(){
+        File.WriteAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "casosClinicos.json"), JsonUtility.ToJson(casesList));
+        File.WriteAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "questoesClinicas.json"), JsonUtility.ToJson(questoesList));   
+         dialogBox.ShowMsg($"Arquivo {fileSelect.getFileName()} salvo na área de trabalho!");
+    }
 
     public void onClickSearchClinic(){
         StartCoroutine(FindFile(1));
