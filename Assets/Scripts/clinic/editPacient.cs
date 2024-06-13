@@ -99,8 +99,8 @@ public class editPacient : MonoBehaviour
     public void onClickSave(){
         casoAtual.nomepaciente = nameInputText.text;
         casoAtual.idade = int.Parse(idadeInputText.text);
-        casoAtual.peso = float.Parse(pesoInputText.text);
-        casoAtual.altura = (float)Math.Round(float.Parse(alturaInputText.text),2);
+        casoAtual.peso = double.Parse(pesoInputText.text);
+        casoAtual.altura = (double)Math.Round(double.Parse(alturaInputText.text),2);
         if(mascTogg.isOn)casoAtual.sexo="M";
         else casoAtual.sexo="F";
         casoAtual.anamnese = anamneseInputText.text;

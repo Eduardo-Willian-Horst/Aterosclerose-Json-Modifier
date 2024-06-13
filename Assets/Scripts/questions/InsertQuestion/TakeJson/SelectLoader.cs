@@ -18,13 +18,13 @@ public class SelectLoader : MonoBehaviour
     private void LoadQuestionList(){
         switch(fileSelect.getFileName()){
             case "easyQuestions.json":
-                EasyReader.LoadEasyQuestions();
+                EasyReader.loadQuestions(fileSelect.getFilePath("easy"));
                 break;
             case "hardQuestions.json":
-                HardReader.LoadHardQuestions();
+                HardReader.loadQuestions(fileSelect.getFilePath("medium"));
                 break;
             case "mediumQuestions.json":
-                MediumReader.LoadMediumQuestions();
+                MediumReader.loadQuestions(fileSelect.getFilePath("hard"));
                 break;
         }
     }

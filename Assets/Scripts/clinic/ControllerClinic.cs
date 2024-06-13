@@ -23,8 +23,19 @@ public class ControllerClinic : MonoBehaviour
     private bool clinic=false, quest= false;
     private string filePath1, filePath2;
 
+    void treatmentBeforeExport(){
+        foreach (var caso in casesList.casosclinicos){
+            caso.exprequerida = caso.dificuldade*10;
+            int numerodequestoes_ = 0;
+            foreach (var quest in questoesList.questoesClinicas){
+                if(caso.id == quest.id_paciente)numerodequestoes_++;
+            }
+            caso.numerodequestoes = numerodequestoes_;
+        }
+    }
 
     public void saveAndExportPacients(){
+        treatmentBeforeExport();
         File.WriteAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "casosClinicos.json"), JsonUtility.ToJson(casesList));
         File.WriteAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "questoesClinicas.json"), JsonUtility.ToJson(questoesList));   
          dialogBox.ShowMsg($"Arquivo {fileSelect.getFileName()} salvo na área de trabalho!");

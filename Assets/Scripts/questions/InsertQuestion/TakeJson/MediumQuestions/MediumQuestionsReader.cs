@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.IO;
 
-public class HardQuestionsReader : MonoBehaviour
+public class MediumQuestionsReader : MonoBehaviour
 {
     [System.Serializable]
     public class question 
@@ -16,40 +16,37 @@ public class HardQuestionsReader : MonoBehaviour
     }
 
     [System.Serializable]
-    public class hardQuestionsList
+    public class mediumQuestionsList
     {
-        public List<question> hardquestions;
+        public List<question> mediumquestions;
     }
 
-    public hardQuestionsList hardList;
+    public mediumQuestionsList mediumList;
     [SerializeField] private FileSelect fileSelect;
     
-    public hardQuestionsList ListaDeQuestoes(){
-        return hardList;
+    public mediumQuestionsList ListaDeQuestoes(){
+        return mediumList;
     } 
-    public void LoadHardQuestions()
+
+
+    public int MediumQuestionsCount()
     {
-        loadQuestions();
+        return mediumList.mediumquestions.Count;
     }
 
-    public int HardQuestionsCount()
+    public void loadQuestions(string path)
     {
-        return hardList.hardquestions.Count;
-    }
-
-    void loadQuestions()
-    {
-        string json = File.ReadAllText(fileSelect.getFilePath());
-        hardList = JsonUtility.FromJson<hardQuestionsList>(json);
+        string json = File.ReadAllText(path);
+        mediumList = JsonUtility.FromJson<mediumQuestionsList>(json);
     }
 
     public void AddNewQuestion(string pergunta, List<string> opcoes, string respostaCorreta)
     {
-        if (hardList == null)
-            hardList = new hardQuestionsList();
+        if (mediumList == null)
+            mediumList = new mediumQuestionsList();
 
-        if (hardList.hardquestions == null)
-            hardList.hardquestions = new List<question>();
+        if (mediumList.mediumquestions == null)
+            mediumList.mediumquestions = new List<question>();
 
         question newQuestion = new question();
         newQuestion.id = NextId();
@@ -57,12 +54,12 @@ public class HardQuestionsReader : MonoBehaviour
         newQuestion.opcoes = opcoes;
         newQuestion.respostaCorreta = respostaCorreta;
 
-        hardList.hardquestions.Add(newQuestion);
+        mediumList.mediumquestions.Add(newQuestion);
     }
 
     private int NextId(){
         int newId = 1;
-        foreach( question i in hardList.hardquestions){
+        foreach( question i in mediumList.mediumquestions){
             if(i.id == newId) newId++;
             else return newId;
         }
@@ -72,14 +69,13 @@ public class HardQuestionsReader : MonoBehaviour
     {
         
         int id = 1;
-        foreach(question item in hardList.hardquestions){
+        foreach(question item in mediumList.mediumquestions){
             item.id = id;
             id++;
         }        
         
-        return JsonUtility.ToJson(hardList);
+        return JsonUtility.ToJson(mediumList);
     }
 
         
 }
-

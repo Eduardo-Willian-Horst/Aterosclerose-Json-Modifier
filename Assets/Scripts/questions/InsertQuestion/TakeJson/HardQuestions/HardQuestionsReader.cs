@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.IO;
 
-public class EasyQuestionsReader : MonoBehaviour
+public class HardQuestionsReader : MonoBehaviour
 {
     [System.Serializable]
     public class question 
@@ -16,40 +16,36 @@ public class EasyQuestionsReader : MonoBehaviour
     }
 
     [System.Serializable]
-    public class easyQuestionsList
+    public class hardQuestionsList
     {
-        public List<question> easyquestions;
+        public List<question> hardquestions;
     }
 
-    public easyQuestionsList easyList;
+    public hardQuestionsList hardList;
     [SerializeField] private FileSelect fileSelect;
     
-    public easyQuestionsList ListaDeQuestoes(){
-        return easyList;
+    public hardQuestionsList ListaDeQuestoes(){
+        return hardList;
     } 
-    public void LoadEasyQuestions()
+
+    public int HardQuestionsCount()
     {
-        loadQuestions();
+        return hardList.hardquestions.Count;
     }
 
-    public int EasyQuestionsCount()
+    public void loadQuestions(string path)
     {
-        return easyList.easyquestions.Count;
-    }
-
-    void loadQuestions()
-    {
-        string json = File.ReadAllText(fileSelect.getFilePath());
-        easyList = JsonUtility.FromJson<easyQuestionsList>(json);
+        string json = File.ReadAllText(path);
+        hardList = JsonUtility.FromJson<hardQuestionsList>(json);
     }
 
     public void AddNewQuestion(string pergunta, List<string> opcoes, string respostaCorreta)
     {
-        if (easyList == null)
-            easyList = new easyQuestionsList();
+        if (hardList == null)
+            hardList = new hardQuestionsList();
 
-        if (easyList.easyquestions == null)
-            easyList.easyquestions = new List<question>();
+        if (hardList.hardquestions == null)
+            hardList.hardquestions = new List<question>();
 
         question newQuestion = new question();
         newQuestion.id = NextId();
@@ -57,12 +53,12 @@ public class EasyQuestionsReader : MonoBehaviour
         newQuestion.opcoes = opcoes;
         newQuestion.respostaCorreta = respostaCorreta;
 
-        easyList.easyquestions.Add(newQuestion);
+        hardList.hardquestions.Add(newQuestion);
     }
 
     private int NextId(){
         int newId = 1;
-        foreach( question i in easyList.easyquestions){
+        foreach( question i in hardList.hardquestions){
             if(i.id == newId) newId++;
             else return newId;
         }
@@ -72,12 +68,12 @@ public class EasyQuestionsReader : MonoBehaviour
     {
         
         int id = 1;
-        foreach(question item in easyList.easyquestions){
+        foreach(question item in hardList.hardquestions){
             item.id = id;
             id++;
         }        
         
-        return JsonUtility.ToJson(easyList);
+        return JsonUtility.ToJson(hardList);
     }
 
         

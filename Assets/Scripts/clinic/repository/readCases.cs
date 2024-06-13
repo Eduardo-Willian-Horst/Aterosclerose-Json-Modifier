@@ -36,8 +36,8 @@ public class readCases : MonoBehaviour {
         public int id;
         public int dificuldade;
         public int idade;
-        public float peso;
-        public float altura;
+        public double peso;
+        public double altura;
         public string sexo;
         public string anamnese;
         public List<string> antecedentes;

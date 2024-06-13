@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.IO;
 
-public class MediumQuestionsReader : MonoBehaviour
+public class EasyQuestionsReader : MonoBehaviour
 {
     [System.Serializable]
     public class question 
@@ -16,40 +16,36 @@ public class MediumQuestionsReader : MonoBehaviour
     }
 
     [System.Serializable]
-    public class mediumQuestionsList
+    public class easyQuestionsList
     {
-        public List<question> mediumquestions;
+        public List<question> easyquestions;
     }
 
-    public mediumQuestionsList mediumList;
+    public easyQuestionsList easyList;
     [SerializeField] private FileSelect fileSelect;
     
-    public mediumQuestionsList ListaDeQuestoes(){
-        return mediumList;
+    public easyQuestionsList ListaDeQuestoes(){
+        return easyList;
     } 
-    public void LoadMediumQuestions()
+
+    public int EasyQuestionsCount()
     {
-        loadQuestions();
+        return easyList.easyquestions.Count;
     }
 
-    public int MediumQuestionsCount()
+    public void loadQuestions(string path)
     {
-        return mediumList.mediumquestions.Count;
-    }
-
-    void loadQuestions()
-    {
-        string json = File.ReadAllText(fileSelect.getFilePath());
-        mediumList = JsonUtility.FromJson<mediumQuestionsList>(json);
+        string json = File.ReadAllText(path);
+        easyList = JsonUtility.FromJson<easyQuestionsList>(json);
     }
 
     public void AddNewQuestion(string pergunta, List<string> opcoes, string respostaCorreta)
     {
-        if (mediumList == null)
-            mediumList = new mediumQuestionsList();
+        if (easyList == null)
+            easyList = new easyQuestionsList();
 
-        if (mediumList.mediumquestions == null)
-            mediumList.mediumquestions = new List<question>();
+        if (easyList.easyquestions == null)
+            easyList.easyquestions = new List<question>();
 
         question newQuestion = new question();
         newQuestion.id = NextId();
@@ -57,12 +53,12 @@ public class MediumQuestionsReader : MonoBehaviour
         newQuestion.opcoes = opcoes;
         newQuestion.respostaCorreta = respostaCorreta;
 
-        mediumList.mediumquestions.Add(newQuestion);
+        easyList.easyquestions.Add(newQuestion);
     }
 
     private int NextId(){
         int newId = 1;
-        foreach( question i in mediumList.mediumquestions){
+        foreach( question i in easyList.easyquestions){
             if(i.id == newId) newId++;
             else return newId;
         }
@@ -72,13 +68,14 @@ public class MediumQuestionsReader : MonoBehaviour
     {
         
         int id = 1;
-        foreach(question item in mediumList.mediumquestions){
+        foreach(question item in easyList.easyquestions){
             item.id = id;
             id++;
         }        
         
-        return JsonUtility.ToJson(mediumList);
+        return JsonUtility.ToJson(easyList);
     }
 
         
 }
+

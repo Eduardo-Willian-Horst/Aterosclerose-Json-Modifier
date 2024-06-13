@@ -10,16 +10,24 @@ public class FileSelect : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI fileNameTMP;
     [SerializeField] Button continueButton;
-    private string filePath;
+    private string filePathEz, filePathMe, filePathHa;
 
-    
-
-    public string getFilePath(){
-        return filePath;
+    public string getFilePath(string difficulty){
+        switch(difficulty){
+            case "easy":
+                return filePathEz;
+                break;
+            case "medium":
+                return filePathMe;
+                break;
+            case "hard":
+                return filePathHa;
+        }
+        return filePathEz;
     }
 
     public string getFileName(){
-        return Path.GetFileName(filePath);
+        return Path.GetFileName(filePathEz);
     }
 
     public void onClickFindFile(){
@@ -40,30 +48,30 @@ public class FileSelect : MonoBehaviour
 
     if (!string.IsNullOrEmpty(selectedFile)) {
         
-        filePath = selectedFile;
+        filePathEz = selectedFile;
             
         CheckFileName();
     }
 }
-
+// CORRIGIR TODOS OS CAMINHOS FILEPATHEZ, SÓ FOI COLOCADO PARA RETIRAR ERROS DE COMPILAÇÃO
 
 
     private void CheckFileName(){
-        if(Path.GetFileName(filePath) != "easyQuestions.json" &&
-        Path.GetFileName(filePath) != "hardQuestions.json" &&
-        Path.GetFileName(filePath) != "mediumQuestions.json") ShowFileNameWithError();
+        if(Path.GetFileName(filePathEz) != "easyQuestions.json" &&
+        Path.GetFileName(filePathHa) != "hardQuestions.json" &&
+        Path.GetFileName(filePathMe) != "mediumQuestions.json") ShowFileNameWithError();
         else ShowFileNameWithoutError();
     }
 
     private void ShowFileNameWithError(){
         fileNameTMP.color = Color.red;
-        fileNameTMP.text = "O nome do arquivo " + Path.GetFileName(filePath) + " não é válido!";
+        fileNameTMP.text = "O nome do arquivo " + Path.GetFileName(filePathEz) + " não é válido!";
         DisactiveContinueButton();
     }
 
     private void ShowFileNameWithoutError(){
         fileNameTMP.color = Color.green;
-        fileNameTMP.text = Path.GetFileName(filePath);
+        fileNameTMP.text = Path.GetFileName(filePathEz);
         ActiveContinueButton();
     }
 
